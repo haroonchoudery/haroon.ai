@@ -17,6 +17,7 @@ export async function generateStaticParams() {
 async function fetchData(slug) {
   const { isEnabled } = draftMode()
   const data = await getPost(slug, isDevelopment ? true : isEnabled)
+  console.log(slug, data)
   if (!data) notFound()
 
   return {
@@ -51,9 +52,9 @@ export default async function WritingSlug({ params }) {
     dateModified,
     author: {
       '@type': 'Person',
-      name: 'Onur Şuyalçınkaya'
+      name: 'Haroon Choudery'
     },
-    url: `https://onur.dev/writing/${slug}`
+    url: `https://haroon.ai/writing/${slug}`
   }
 
   return (

@@ -26,7 +26,7 @@ export default async function Image({ params }) {
     (
       <OpenGraphImage
         title={ogImageTitle || title}
-        description={ogImageSubtitle || 'by Onur Şuyalçınkaya'}
+        description={ogImageSubtitle || 'by Haroon Choudery'}
         url="writing"
       />
     ),

@@ -9,7 +9,7 @@ export function middleware(request, event) {
 
     const URL =
       process.env.NODE_ENV === 'production'
-        ? 'https://onur.dev/api/increment-views'
+        ? 'https://haroon.ai/api/increment-views'
         : 'http://localhost:3000/api/increment-views'
 
     try {

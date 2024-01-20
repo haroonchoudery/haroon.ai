@@ -51,7 +51,7 @@ export default async function RootLayout({ children }) {
 }
 
 export const metadata = {
-  metadataBase: new URL('https://onur.dev'),
+  metadataBase: new URL('https://haroon.ai/'),
   robots: {
     index: true,
     follow: true

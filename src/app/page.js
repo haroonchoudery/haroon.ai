@@ -15,25 +15,70 @@ async function fetchData() {
   return { allPosts }
 }
 
+const EmptyPlaceholder = () => (
+  <div className="shrink-0 snap-center md:hidden">
+    <div className="w-px shrink-0" />
+  </div>
+)
+
 export default async function Home() {
   const { allPosts } = await fetchData()
   const sortedPosts = getSortedPosts(allPosts)
 
   return (
     <ScrollArea className="flex flex-col" hasScrollTitle>
-      <FloatingHeader scrollTitle="Onur Şuyalçınkaya" />
+      <FloatingHeader scrollTitle="Haroon Choudery" />
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title="Home" className="lg:hidden" />
           <p>
-            {`Hi 👋 I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
-          The Netherlands.`}
+            {`Hi 👋 I'm Haroon, 6+ year AI professional, amateur podcast host, and girl dad based in
+          New York City.`}
           </p>
           <p>
-            I develop things as a Senior Frontend Software Engineer at Bitvavo. Previously, I worked as a Senior
-            Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer
-            at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
+            I'm currently CEO at Autoblocks. Previously, I worked in data science roles at Mark Cuban Companies,
+            Deloitte, and Komodo Health, and led growth at startups like Hex and Highlight.
           </p>
+          <p>
+            I'm also co-founder of AI For Anyone, one of the nation's most impactful AI education nonprofits, and Not A
+            Bot, an AI newsletter with 50k+ subscribers.
+          </p>
+          {/* <div className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-6 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:pb-0">
+            <EmptyPlaceholder />
+            <img
+              src="/assets/workspace-1.webp"
+              alt="Workspace | 1"
+              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
+              width={756}
+              height={1008}
+              loading="eager"
+            />
+            <img
+              src="/assets/workspace-1.webp"
+              alt="Workspace | 1"
+              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
+              width={756}
+              height={1008}
+              loading="eager"
+            />
+            <img
+              src="/assets/workspace-1.webp"
+              alt="Workspace | 1"
+              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
+              width={756}
+              height={1008}
+              loading="eager"
+            />
+            <img
+              src="/assets/workspace-2.webp"
+              alt="Workspace | 2"
+              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
+              width={756}
+              height={1008}
+              loading="eager"
+            />
+            <EmptyPlaceholder />
+          </div> */}
           <Button asChild variant="link" className="inline px-0">
             <Link href="/writing">
               <h2 className="mb-4 mt-8">Writing</h2>

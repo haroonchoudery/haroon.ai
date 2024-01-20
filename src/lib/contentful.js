@@ -83,26 +83,7 @@ export async function getPost(slug, preview = isDevelopment) {
                   description
                 }
               }
-              entries {
-                inline {
-                  sys {
-                    id
-                  }
-                  __typename
-                  ... on ContentEmbed {
-                    title
-                    embedUrl
-                    type
-                  }
-                  ... on CodeBlock {
-                    title
-                    code
-                  }
-                  ... on Tweet {
-                    id
-                  }
-                }
-              }
+
             }
           }
           sys {
@@ -117,6 +98,48 @@ export async function getPost(slug, preview = isDevelopment) {
 
   return entry?.data?.postCollection?.items?.[0]
 }
+
+// export async function getPost(slug, preview = isDevelopment) {
+//   const entry = await fetchGraphQL(
+//     `query {
+//       postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
+//         items {
+//           title
+//           slug
+//           date
+//           seo {
+//             title
+//             description
+//           }
+//           content {
+//             json
+//             links {
+//               assets {
+//                 block {
+//                   sys {
+//                     id
+//                   }
+//                   url
+//                   title
+//                   width
+//                   height
+//                   description
+//                 }
+//               }
+//             }
+//           }
+//           sys {
+//             firstPublishedAt
+//             publishedAt
+//           }
+//         }
+//       }
+//     }`,
+//     preview
+//   )
+
+//   return entry?.data?.postCollection?.items?.[0]
+// }
 
 export async function getWritingSeo(slug, preview = isDevelopment) {
   const entry = await fetchGraphQL(

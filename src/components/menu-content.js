@@ -10,15 +10,15 @@ export const MenuContent = () => {
         <Link href="/" className="link-card inline-flex items-center gap-2 p-2">
           <img
             src="/assets/me.jpg"
-            alt="Onur Şuyalçınkaya"
+            alt="Haroon Choudery"
             width={40}
             height={40}
             loading="lazy"
             className="rounded-full border shadow-sm"
           />
           <div className="flex flex-col">
-            <span className="font-semibold tracking-tight">Onur Şuyalçınkaya</span>
-            <span className="text-gray-600">Software Engineer</span>
+            <span className="font-semibold tracking-tight">Haroon Choudery</span>
+            <span className="text-gray-600">CEO, Autoblocks</span>
           </div>
         </Link>
         <div className="flex flex-col gap-1">

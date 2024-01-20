@@ -46,7 +46,7 @@ export const SideMenu = ({ children, title, href, isInner }) => {
             <div className="text-sm font-semibold tracking-tight">
               {href ? <Link href={href}>{title}</Link> : <span>{title}</span>}
             </div>
-            {(isWritingHref || isBookmarksHref) && (
+            {/*{(isWritingHref || isBookmarksHref) && (
               <Button variant="outline" size="xs" asChild>
                 <Link
                   href={isWritingHref ? '/writing.xml' : '/bookmarks.xml'}
@@ -58,7 +58,7 @@ export const SideMenu = ({ children, title, href, isInner }) => {
                   RSS feed
                 </Link>
               </Button>
-            )}
+            )}*/}
           </div>
         </div>
       )}

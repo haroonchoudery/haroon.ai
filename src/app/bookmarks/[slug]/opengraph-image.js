@@ -24,7 +24,7 @@ export default async function Image({ params }) {
     (
       <OpenGraphImage
         title={collection.title}
-        description={`A curated selection of various handpicked ${collection.title.toLowerCase()} bookmarks by Onur Şuyalçınkaya`}
+        description={`A curated selection of various handpicked ${collection.title.toLowerCase()} bookmarks by Haroon Choudery`}
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

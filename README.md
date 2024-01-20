@@ -25,7 +25,7 @@ and more.
 
 ```bash
 $ git clone https://github.com/suyalcinkaya/onur.dev.git
-$ cd onur.dev
+$ cd haroon.ai
 $ yarn
 $ yarn dev
 ```
