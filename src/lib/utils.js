@@ -34,6 +34,11 @@ export const isExternalLink = (href) => {
  */
 export const getDateTimeFormat = (date) => {
   const dateObj = new Date(date)
+  // Check if date is valid
+  if (isNaN(dateObj.getTime())) {
+    // Return a default string or handle the invalid date as needed
+    return 'Invalid date'
+  }
   return Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',

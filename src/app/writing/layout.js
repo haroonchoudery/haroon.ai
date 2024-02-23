@@ -4,7 +4,7 @@ import { SideMenu } from '@/components/side-menu'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getAllPosts } from '@/lib/contentful'
-import { getSortedPosts } from '@/lib/utils'
+import { getSortedPosts } from '@/lib/markdown'
 
 async function fetchData() {
   const allPosts = await getAllPosts()

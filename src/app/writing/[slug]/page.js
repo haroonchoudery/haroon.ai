@@ -1,119 +1,36 @@
-import { draftMode } from 'next/headers'
-import { notFound } from 'next/navigation'
+import { MDXRemote } from 'next-mdx-remote'
+import { getSortedPosts, getPostData } from '@/lib/markdown'
+import { serialize } from 'next-mdx-remote/serialize'
+import { remark } from 'remark'
+import html from 'remark-html'
+import Link from 'next/link'
 
-import { ScrollArea } from '@/components/scroll-area'
-import { RichText } from '@/components/contentful/rich-text'
-import { PageTitle } from '@/components/page-title'
-import { FloatingHeader } from '@/components/floating-header'
-import { WritingViews } from '@/components/writing-views'
-import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
-import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
+// Define custom components for MDX elements
+const components = {
+  h1: (props) => <h1 className="my-4 text-4xl font-bold" {...props} />,
+  p: (props) => <p className="mb-4" {...props} />,
+  a: (props) => <Link {...props} className="text-blue-500 hover:underline" />
+}
 
 export async function generateStaticParams() {
-  const allPosts = await getAllPostSlugs()
-  return allPosts.map((post) => ({ slug: post.slug }))
+  const posts = getSortedPosts()
+  return posts.map((post) => ({ slug: post.slug }))
 }
 
 async function fetchData(slug) {
-  const { isEnabled } = draftMode()
-  const data = await getPost(slug, isDevelopment ? true : isEnabled)
-  console.log(slug, data)
-  if (!data) notFound()
-
-  return {
-    data
-  }
+  const postData = await getPostData(slug)
+  const processedContent = await remark().use(html).process(postData.content)
+  const contentHtml = processedContent.toString()
+  return { title: postData.title, contentHtml }
 }
 
-export default async function WritingSlug({ params }) {
+export default async function Post({ params }) {
   const { slug } = params
-  const { data } = await fetchData(slug)
-
-  const {
-    title,
-    date,
-    seo: { title: seoTitle, description: seoDescription },
-    content,
-    sys: { firstPublishedAt, publishedAt: updatedAt }
-  } = data
-
-  const postDate = date || firstPublishedAt
-  const dateString = getDateTimeFormat(postDate)
-
-  const datePublished = new Date(postDate).toISOString()
-  const dateModified = new Date(updatedAt).toISOString()
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: seoTitle,
-    description: seoDescription,
-    datePublished,
-    dateModified,
-    author: {
-      '@type': 'Person',
-      name: 'Haroon Choudery'
-    },
-    url: `https://haroon.ai/writing/${slug}`
-  }
-
+  const { title, contentHtml } = await fetchData(slug)
   return (
-    <>
-      <ScrollArea className="flex flex-col bg-white" hasScrollTitle>
-        <FloatingHeader scrollTitle={title} goBackLink="/writing">
-          <WritingViews slug={slug} />
-        </FloatingHeader>
-        <div className="content-wrapper">
-          <article className="content">
-            <PageTitle
-              title={title}
-              subtitle={
-                <time dateTime={postDate} className="text-gray-400">
-                  {dateString}
-                </time>
-              }
-              className="mb-6 flex flex-col gap-3"
-            />
-            <RichText content={content} />
-          </article>
-        </div>
-      </ScrollArea>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
-    </>
+    <article className="prose lg:prose-xl mx-auto p-4">
+      <h1 className="mb-4 text-3xl font-bold">{title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    </article>
   )
-}
-
-export async function generateMetadata({ params }) {
-  const { slug } = params
-  const seoData = await getWritingSeo(slug)
-  if (!seoData) return null
-
-  const {
-    date,
-    seo: { title, description },
-    sys: { firstPublishedAt, publishedAt: updatedAt }
-  } = seoData
-
-  const siteUrl = `/writing/${slug}`
-  const postDate = date || firstPublishedAt
-  const publishedTime = new Date(postDate).toISOString()
-  const modifiedTime = new Date(updatedAt).toISOString()
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      publishedTime,
-      ...(updatedAt && {
-        modifiedTime
-      }),
-      url: siteUrl
-    },
-    alternates: {
-      canonical: siteUrl
-    }
-  }
 }

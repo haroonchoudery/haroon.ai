@@ -5,12 +5,39 @@ import { FloatingHeader } from '@/components/floating-header'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
-import { getSortedPosts } from '@/lib/utils'
+// import { getSortedPosts } from '@/lib/utils'
+import { getSortedPosts } from '@/lib/markdown'
 
 async function fetchData() {
-  const allPosts = await getAllPosts()
+  const allPosts = getSortedPosts()
   return { allPosts }
 }
+
+import { MDXRemote } from 'next-mdx-remote/rsc'
+
+import fs from 'fs'
+import path from 'path'
+
+const postsDirectory = path.join(process.cwd(), 'posts')
+
+// async function fetchData() {
+//   const filenames = fs.readdirSync(postsDirectory)
+
+//   const postsPromises = filenames
+//     .filter((filename) => /\.mdx?$/.test(filename))
+//     .map(async (filename) => {
+//       const filePath = path.join(postsDirectory, filename)
+//       const module = await import(filePath)
+//       console.log(module)
+//       return {
+//         filename
+//       }
+//     })
+
+//   const allPosts = await Promise.all(postsPromises)
+
+//   return { allPosts }
+// }
 
 export default async function Writing() {
   const { allPosts } = await fetchData()
