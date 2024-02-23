@@ -1,15 +1,15 @@
 import {
-  GithubIcon,
+  // GithubIcon,
   TwitterIcon,
   LinkedinIcon,
-  InstagramIcon,
-  YoutubeIcon,
+  // InstagramIcon,
+  // YoutubeIcon,
   SparklesIcon,
-  PencilLineIcon,
-  NavigationIcon,
-  Wand2Icon,
-  BookmarkIcon,
-  ArmchairIcon
+  PencilLineIcon
+  // NavigationIcon,
+  // Wand2Icon,
+  // BookmarkIcon,
+  // ArmchairIcon
 } from 'lucide-react'
 
 export const PROFILES = {

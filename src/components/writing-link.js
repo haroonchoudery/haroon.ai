@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domAnimation } from 'framer-motion'
 
-import { cn, getDateTimeFormat, viewCountFormatter } from '@/lib/utils'
+import { cn, getDateTimeFormat } from '@/lib/utils'
 
 export const WritingLink = ({ post, viewCount, isMobile }) => {
   console.log(post, viewCount, isMobile)
@@ -12,11 +12,11 @@ export const WritingLink = ({ post, viewCount, isMobile }) => {
   const isActive = pathname === `/writing/${post.slug}` // Assuming 'slug' is part of the post data
   const date = post.date || post.sys?.firstPublishedAt
   const formattedDate = getDateTimeFormat(date)
-  const formattedViewCount = viewCount ? viewCountFormatter.format(viewCount) : null
+  // const formattedViewCount = viewCount ? viewCountFormatter.format(viewCount) : null
 
   // Additional metadata display (e.g., author, summary)
   // Assuming 'author' and 'summary' are part of the post data
-  const summary = post.summary || 'No summary available'
+  // const summary = post.summary || 'No summary available'
   return (
     <LazyMotion features={domAnimation}>
       <Link

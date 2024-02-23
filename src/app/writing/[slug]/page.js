@@ -1,16 +1,14 @@
-import { MDXRemote } from 'next-mdx-remote'
 import { getSortedPosts, getPostData } from '@/lib/markdown'
-import { serialize } from 'next-mdx-remote/serialize'
 import { remark } from 'remark'
 import html from 'remark-html'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 // Define custom components for MDX elements
-const components = {
-  h1: (props) => <h1 className="my-4 text-4xl font-bold" {...props} />,
-  p: (props) => <p className="mb-4" {...props} />,
-  a: (props) => <Link {...props} className="text-blue-500 hover:underline" />
-}
+// const components = {
+//   h1: (props) => <h1 className="my-4 text-4xl font-bold" {...props} />,
+//   p: (props) => <p className="mb-4" {...props} />,
+//   a: (props) => <Link {...props} className="text-blue-500 hover:underline" />
+// }
 
 export async function generateStaticParams() {
   const posts = getSortedPosts()

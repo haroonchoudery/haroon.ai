@@ -15,11 +15,11 @@ async function fetchData() {
   return { allPosts }
 }
 
-const EmptyPlaceholder = () => (
-  <div className="shrink-0 snap-center md:hidden">
-    <div className="w-px shrink-0" />
-  </div>
-)
+// const EmptyPlaceholder = () => (
+//   <div className="shrink-0 snap-center md:hidden">
+//     <div className="w-px shrink-0" />
+//   </div>
+// )
 
 export default async function Home() {
   const { allPosts } = await fetchData()
@@ -36,12 +36,12 @@ export default async function Home() {
           New York City.`}
           </p>
           <p>
-            I'm currently CEO at Autoblocks. Previously, I worked in data science roles at Mark Cuban Companies,
+            I&apos;m currently CEO at Autoblocks. Previously, I worked in data science roles at Mark Cuban Companies,
             Deloitte, and Komodo Health, and led growth at startups like Hex and Highlight.
           </p>
           <p>
-            I'm also co-founder of AI For Anyone, one of the nation's most impactful AI education nonprofits, and Not A
-            Bot, an AI newsletter with 50k+ subscribers.
+            I&apos;m also co-founder of AI For Anyone, one of the nation&apos;s most impactful AI education nonprofits,
+            and Not A Bot, an AI newsletter with 50k+ subscribers.
           </p>
           {/* <div className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-6 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:pb-0">
             <EmptyPlaceholder />

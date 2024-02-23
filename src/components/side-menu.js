@@ -1,10 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { RadioIcon } from 'lucide-react'
 
 import { ScrollArea } from '@/components/scroll-area'
-import { Button } from '@/components/ui/button.jsx'
 import { useKeyPress } from '@/hooks/useKeyPress'
 import { cn } from '@/lib/utils'
 
@@ -30,8 +28,8 @@ export const SideMenu = ({ children, title, href, isInner }) => {
     }
   }
 
-  const isWritingHref = href === '/writing'
-  const isBookmarksHref = href === '/bookmarks'
+  // const isWritingHref = href === '/writing'
+  // const isBookmarksHref = href === '/bookmarks'
 
   return (
     <ScrollArea
